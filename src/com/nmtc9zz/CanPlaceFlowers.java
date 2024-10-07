@@ -1,8 +1,13 @@
 package com.nmtc9zz;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class CanPlaceFlowers {
     public static void main(String[] args) {
-
+        int[] placeFlowers = {0, 0 , 1, 0 , 0};
+        int n = 1;
+        System.out.println(canPlaceFlowers(placeFlowers, n));
     }
 
     /**
@@ -14,11 +19,18 @@ public class CanPlaceFlowers {
      * @param n
      * @return
      */
-    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+    public static boolean canPlaceFlowers(int[] flowerbed, int n) {
         for (int i = 0; i < flowerbed.length; i++) {
-            if (flowerbed[i] == 0 && flowerbed[i++] == 0) {
-                n--;
+            if (flowerbed[i] == 0) {
+                boolean leftValid = i == 0 || flowerbed[i - 1] == 0;
+                boolean rightValid = i == flowerbed.length - 1 || flowerbed[i + 1] == 0;
+
+                if (leftValid && rightValid) {
+                    flowerbed[i] = 1;
+                    n--;
+                }
             }
         }
+        return n <= 0;
     }
 }
