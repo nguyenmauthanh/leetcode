@@ -6,16 +6,20 @@ public class IsSubsequence {
     }
 
     public static boolean isSubsequence(String s, String t){
+        if(s.isEmpty()){
+            return true;
+        }
+
         int j = 0;
-        for(int i = 0; j < s.length() && i < t.length() ; i++){
-            if(s.charAt(j) == t.charAt(i)){
+        for (int i = 0; i < t.length() ; i++){
+            if (s.charAt(j) == t.charAt(i)){
                 j++;
+                if (j == s.length()){
+                    return true;
+                }
             }
         }
 
-        if(j == s.length()){
-            return true;
-        }
         return false;
     }
 }
